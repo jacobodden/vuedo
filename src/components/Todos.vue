@@ -2,15 +2,36 @@
   <div class="todos">
     <h1>Todos</h1>
     <p>{{ msg }}</p>
+    <div class="todo-entry">
+      <input placeholder="Enter todo" type="text"/>
+      <button>Submit</button>
+    </div>
+    <div class="todo-container">
+      <ul>
+        <li v-for="todo in all">{{ todo.text }} is archivde</li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Todos',
-  data () {
-    return {
-      msg: 'Welcome to the todos page'
+  computed: {
+    all () {
+      return this.$store.getters.all
+    },
+    done () {
+      return this.$store.getters.done
+    },
+    archived () {
+      return this.$store.getters.archived
+    },
+    doneAndArchived () {
+      return this.$store.getters.doneAndArchived
+    },
+    msg () {
+      return this.$store.getters.msg
     }
   }
 }
