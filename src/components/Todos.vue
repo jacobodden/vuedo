@@ -3,12 +3,12 @@
     <h1>Todos</h1>
     <p>{{ msg }}</p>
     <div class="todo-entry">
-      <input placeholder="Enter todo" type="text"/>
-      <button>Submit</button>
+      <input placeholder="Enter todo" class="todo-input-text" type="text"/>
+      <button v-on:click="add">Submit</button>
     </div>
     <div class="todo-container">
       <ul>
-        <li v-for="todo in all">{{ todo.text }} is archivde</li>
+        <li v-for="todo in all">{{ todo.text }}</li>
       </ul>
     </div>
   </div>
@@ -33,6 +33,11 @@ export default {
     msg () {
       return this.$store.getters.msg
     }
+  },
+  methods: {
+    add () {
+      this.$store.commit('add', document.querySelector('.todo-input-text').value)
+    }
   }
 }
 </script>
@@ -54,4 +59,3 @@ a {
   color: #42b983;
 }
 </style>
-
